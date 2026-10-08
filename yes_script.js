@@ -1,3 +1,4 @@
+========================================================================
 'use strict';
 
 const copyButton = document.getElementById('copy-button');
