@@ -1,0 +1,21 @@
+/* The yes page shares the main palette and adds a little planning card. */
+.next-step {
+  margin-top: 26px;
+  padding: 20px;
+  background: #f6eee4;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+.next-step p { margin: 0 0 12px; }
+.next-step p:last-child { margin-bottom: 0; }
+.next-label {
+  color: var(--accent);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+}
+.little-promise { color: var(--muted); font-size: 0.84rem; }
+.back-link { display: inline-block; margin-top: 18px; color: var(--accent); font-size: 0.85rem; }
+.back-link:hover { background: #f6eee4; }

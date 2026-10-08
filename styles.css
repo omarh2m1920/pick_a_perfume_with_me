@@ -1,0 +1,115 @@
+/* Warm perfume-counter colors, with enough room for phones and long copy. */
+:root {
+  color-scheme: light;
+  --background: #f5eee5;
+  --card: #fffdf8;
+  --ink: #302b27;
+  --muted: #655c52;
+  --accent: #754735;
+  --border: #e7d8c6;
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  padding: 32px 16px;
+  background: radial-gradient(ellipse at top, #fff9ed 0%, var(--background) 70%);
+  color: var(--ink);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+  width: min(100%, 640px);
+  padding: clamp(24px, 5vw, 44px);
+  text-align: center;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 28px;
+  box-shadow: 0 18px 60px #75473512;
+}
+
+.eyebrow {
+  margin: 0 0 22px;
+  color: var(--accent);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  line-height: 1.6;
+}
+
+.greeting { margin: 0 0 12px; font-size: 1.1rem; }
+h1 {
+  margin: 0 0 20px;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(2.3rem, 8vw, 3.7rem);
+  font-weight: 400;
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+}
+
+.intro, .description, .plan {
+  font-size: 1rem;
+  line-height: 1.65;
+}
+.intro { color: var(--accent); }
+.description { color: var(--muted); }
+.plan { margin: 22px 0; font-weight: 700; }
+
+.gif-container { margin: 24px 0 0; }
+.gif-container img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 18px;
+  background: var(--background);
+}
+figcaption {
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+.buttons { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+button, .back-link {
+  min-height: 48px;
+  padding: 14px 20px;
+  border-radius: 12px;
+  font: inherit;
+  font-weight: 700;
+  line-height: 1.4;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 160ms ease, transform 160ms ease;
+}
+.yes-button { border: 1px solid var(--accent); color: #fff; background: var(--accent); }
+.yes-button:hover { background: #593425; transform: translateY(-2px); }
+.no-button { border: 1px solid var(--border); background: #f6eee4; color: var(--ink); }
+.no-button:hover { background: #ecdfd0; }
+button:focus-visible, a:focus-visible { outline: 3px solid #a77128; outline-offset: 4px; }
+.response { margin: 18px 0 0; color: var(--accent); font-size: 0.92rem; line-height: 1.6; }
+.response:empty { display: none; }
+.text-button { margin-top: 8px; border: 0; background: transparent; color: var(--muted); text-decoration: underline; }
+.footer-note { margin: 24px 0 0; color: var(--muted); font-size: 0.78rem; line-height: 1.6; }
+a { color: var(--accent); }
+
+@media (max-width: 420px) {
+  body { padding: 16px 12px; }
+  .container { border-radius: 20px; padding: 26px 20px; }
+  .buttons { flex-direction: column; }
+  .buttons button { width: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  button, .back-link { transition: none; }
+  .yes-button:hover { transform: none; }
+  /* The still frame keeps the same illustration without the GIF animation. */
+  #invite-gif { content: url('assets/perfume-quest.png'); }
+  #celebration-gif { content: url('assets/perfume-party.png'); }
+}
