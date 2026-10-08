@@ -1,32 +1,36 @@
+========================================================================
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#f5eee5">
-  <meta name="description" content="Perfume-shopping side quest accepted. Thanks, Myriam!">
-  <title>Perfume mission accepted, Myriam!</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#20262c">
+  <title>It's a plan, Myriam ✨</title>
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="yes_style.css">
+  <script src="yes_script.js" defer></script>
 </head>
 <body>
-  <main class="container" aria-labelledby="success-title">
-    <p class="eyebrow">NEW SIDE QUEST UNLOCKED</p>
-    <p class="greeting">It's a plan, Myriam ✨</p>
-    <h1 id="success-title">Gym buddy.<br>Perfume expert.<br>Absolute lifesaver.</h1>
-    <p class="description">Thank you for helping this very confused nose. I'm trusting your taste more than my own… which currently stops at “yeah, that smells good.”</p>
-    <!-- An original local celebration GIF, themed around perfume bottles. -->
-    <figure class="gif-container">
-      <img id="celebration-gif" src="assets/perfume-party.gif" width="560" height="320" alt="Two perfume bottles bounce together under falling confetti.">
-      <figcaption>From lifting weights to lifting my fragrance game.</figcaption>
-    </figure>
-    <div class="next-step">
-      <p class="next-label">NEXT REP: MAKE THE PLAN</p>
-      <p>Send me a message with a day that works for you, and we'll pick a parfumerie together.</p>
-      <p class="little-promise">I promise to listen to your advice… and try not to smell every bottle at once 😅</p>
+  <main class="invite accepted">
+    <header class="topbar"><span class="brand">M<span class="brand-dot">.</span></span><span class="edition">FOR MYRIAM · MISSION ACCEPTED</span><span class="online-dot" aria-hidden="true"></span></header>
+    <div class="layout">
+      <section class="visual party" aria-label="Myriam celebrating the perfume plan">
+        <div class="orbit orbit-one" aria-hidden="true"></div><div class="orbit orbit-two" aria-hidden="true"></div>
+        <div class="portrait-wrap"><img class="portrait" src="assets/myriam.png" width="800" height="800" alt="Myriam's illustrated mirror selfie"></div>
+        <span class="floating-tag expert-tag">MISSION ACCEPTED ✨</span><span class="floating-tag gym-tag">my perfume MVP</span>
+        <span class="spark spark-one" aria-hidden="true">✦</span><span class="spark spark-two" aria-hidden="true">✧</span>
+        <div class="confetti" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      </section>
+      <section class="copy" aria-labelledby="title">
+        <p class="eyebrow"><span></span> SCENT SIDE QUEST: UNLOCKED</p>
+        <h1 id="title">It's a plan,<br><em>Myriam ✨</em></h1>
+        <p class="subtitle">Okay, perfume expert. Send me this:</p>
+        <div class="message-card"><p id="message-text">betbiaa haha wa9teh nemchiw !</p><button id="copy-button" type="button">Copy message <span aria-hidden="true">↗</span></button></div>
+        <p id="copy-status" class="status" role="status" aria-live="polite">Copy it, then send it to me 😌</p>
+        <a class="back-link" href="index.html">← Back</a>
+      </section>
     </div>
-    <p class="footer-note">Tell me directly too — this page doesn't send me your answer.</p>
-    <a class="back-link" href="index.html">← Back to the invitation</a>
+    <footer class="page-footer"><span>YOU PICK THE SCENT.</span><span aria-hidden="true">✦</span><span>I TRY TO KEEP UP.</span></footer>
   </main>
 </body>
 </html>
