@@ -1,43 +1,83 @@
+========================================================================
 'use strict';
 
-// All invitation copy lives here so the playful follow-up is easy to edit.
-const messages = [
-  "Fair! My nose can stay on beginner mode a little longer 😅",
-  "I'll keep training my nose. Apparently 'smells nice' isn't a fragrance note 😂",
-  "Offer stays open: you judge the perfumes, I try to learn the vocabulary ✨"
-];
+const arena = document.getElementById('answer-arena');
+const yes = document.getElementById('yes-button');
+const maybe = document.getElementById('no-button');
+const decline = document.getElementById('decline-button');
+const status = document.getElementById('response-message');
+const invite = document.getElementById('invite');
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+const jokes = ['Nice try 😏', 'Too slow 😂', 'Catch me first 🏃‍♀️', 'Your cardio for today 💪'];
+let dodges = 0;
+let keyboardMode = false;
+let lastDodge = 0;
 
-const yesButton = document.getElementById('yes-button');
-const noButton = document.getElementById('no-button');
-const declineButton = document.getElementById('decline-button');
-const responseMessage = document.getElementById('response-message');
-const followUp = document.getElementById('follow-up');
-const invitationGif = document.getElementById('invite-gif');
-let messageIndex = 0;
-
-function handleYesClick() {
-  // A relative link works both as a local file and on a hosted website.
-  window.location.href = 'yes_page.html';
+function resetMaybe() {
+  maybe.style.left = '';
+  maybe.style.top = '';
+  maybe.style.right = '';
 }
 
-function handleNoClick() {
-  responseMessage.textContent = messages[messageIndex];
-  messageIndex = (messageIndex + 1) % messages.length;
-  noButton.textContent = 'Still another time';
-  followUp.hidden = false;
-  invitationGif.src = 'assets/nose-in-training.gif';
-  invitationGif.alt = 'A perfume bottle releases floating scent notes while a question mark bobs above it.';
-  // Keep both choices usable: no runaway buttons or endlessly growing text.
+function dodge(event) {
+  if (event.pointerType !== 'mouse' || keyboardMode || reducedMotion.matches || arena.hidden) return;
+  const button = maybe.getBoundingClientRect();
+  const dx = Math.max(button.left - event.clientX, 0, event.clientX - button.right);
+  const dy = Math.max(button.top - event.clientY, 0, event.clientY - button.bottom);
+  if (Math.hypot(dx, dy) > 55 || performance.now() - lastDodge < 100) return;
+
+  const bounds = arena.getBoundingClientRect();
+  const yesBounds = yes.getBoundingClientRect();
+  const maxX = Math.max(0, bounds.width - button.width);
+  const maxY = Math.max(0, bounds.height - button.height);
+  let best = null;
+  for (let col = 0; col <= 8; col++) {
+    for (let row = 0; row <= 5; row++) {
+      const x = maxX * col / 8;
+      const y = maxY * row / 5;
+      const left = bounds.left + x;
+      const top = bounds.top + y;
+      const overlapsYes = left < yesBounds.right + 8 && left + button.width > yesBounds.left - 8 && top < yesBounds.bottom + 8 && top + button.height > yesBounds.top - 8;
+      if (overlapsYes) continue;
+      const distance = Math.hypot(left + button.width / 2 - event.clientX, top + button.height / 2 - event.clientY);
+      const score = distance + Math.random() * 16;
+      if (!best || score > best.score) best = { x, y, score };
+    }
+  }
+  if (!best) return;
+  maybe.style.right = 'auto';
+  maybe.style.left = `${best.x}px`;
+  maybe.style.top = `${best.y}px`;
+  status.textContent = jokes[dodges++ % jokes.length];
+  invite.classList.add('chasing');
+  lastDodge = performance.now();
 }
 
-function handleDeclineClick() {
-  responseMessage.textContent = 'All good, Myriam! See you at the gym 💪';
-  document.getElementById('answer-buttons').hidden = true;
-  followUp.hidden = true;
-  invitationGif.src = 'assets/perfume-quest.gif';
-  invitationGif.alt = 'An animated dumbbell passes the spotlight to a sparkling perfume bottle.';
+function pass() {
+  arena.hidden = true;
+  decline.hidden = true;
+  status.textContent = 'All good. See you at the gym 🤝';
+  invite.classList.remove('chasing');
+  invite.classList.add('passed');
 }
 
-yesButton.addEventListener('click', handleYesClick);
-noButton.addEventListener('click', handleNoClick);
-declineButton.addEventListener('click', handleDeclineClick);
+arena.addEventListener('pointermove', dodge);
+maybe.addEventListener('pointerenter', dodge);
+yes.addEventListener('click', () => { window.location.href = 'yes_page.html'; });
+maybe.addEventListener('click', pass);
+decline.addEventListener('click', pass);
+document.addEventListener('keydown', event => {
+  if (event.key === 'Tab') keyboardMode = true;
+});
+document.addEventListener('pointerdown', event => {
+  if (event.pointerType === 'mouse') keyboardMode = false;
+});
+window.addEventListener('resize', resetMaybe);
+reducedMotion.addEventListener('change', () => {
+  resetMaybe();
+  status.textContent = reducedMotion.matches ? 'Your call 😌' : 'Try catching “Maybe” 😏';
+});
+if (reducedMotion.matches || !window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+  status.textContent = 'Your call 😌';
+}
+
