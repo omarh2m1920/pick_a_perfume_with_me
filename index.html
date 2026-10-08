@@ -1,39 +1,39 @@
+========================================================================
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#f5eee5">
-  <meta name="description" content="A little perfume-shopping invitation for Myriam, my gym buddy and resident scent expert.">
-  <title>Myriam, help me pick a perfume?</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#20262c">
+  <title>Myriam — a little scent side quest</title>
   <link rel="stylesheet" href="styles.css">
   <script src="script.js" defer></script>
 </head>
 <body>
-  <main class="container" aria-labelledby="invitation-title">
-    <p class="eyebrow">A SIDE QUEST FOR MY GYM BUDDY</p>
-    <p class="greeting">Hey Myriam ✨</p>
-    <h1 id="invitation-title">Spot me…<br>at the parfumerie?</h1>
-    <p class="intro">We train together, but there's one muscle I haven't trained: my nose.</p>
-    <p class="description">I know absolutely nothing about scents. You have a whole perfume collection. So… will you come to a parfumerie with me and help me choose a new perfume?</p>
-
-    <!-- Local GIFs keep the invitation working without third-party image links. -->
-    <figure class="gif-container">
-      <img id="invite-gif" src="assets/perfume-quest.gif" width="560" height="320" alt="An animated dumbbell passes the spotlight to a sparkling perfume bottle.">
-      <figcaption>You bring the scent expertise. I'll bring my very confused nose.</figcaption>
-    </figure>
-
-    <p class="plan">One parfumerie. A few scent tests. Your expert verdict.</p>
-    <div class="buttons" id="answer-buttons">
-      <button class="yes-button" id="yes-button" type="button">Let's pick a perfume ✨</button>
-      <button class="no-button" id="no-button" type="button">Maybe another time</button>
+  <main class="invite" id="invite">
+    <header class="topbar"><span class="brand">M<span class="brand-dot">.</span></span><span class="edition">FOR MYRIAM · INVITE 001</span><span class="online-dot" aria-hidden="true"></span></header>
+    <div class="layout">
+      <section class="visual" aria-label="Myriam's animated perfume side quest">
+        <div class="orbit orbit-one" aria-hidden="true"></div><div class="orbit orbit-two" aria-hidden="true"></div>
+        <div class="portrait-wrap"><img class="portrait" src="assets/myriam.png" width="800" height="800" alt="Myriam's illustrated mirror selfie"></div>
+        <span class="floating-tag expert-tag">SCENT EXPERT ✨</span>
+        <span class="floating-tag gym-tag">gym buddy → scent buddy</span>
+        <div class="perfume-charm" aria-hidden="true"><svg viewBox="0 0 72 86"><rect x="24" y="5" width="24" height="13" rx="4" fill="currentColor"/><path d="M28 18h16v10H28z" fill="currentColor"/><rect x="12" y="27" width="48" height="53" rx="13" fill="none" stroke="currentColor" stroke-width="3"/><rect x="20" y="46" width="32" height="24" rx="5" fill="currentColor"/><path d="M27 55h18m-14 7h10" stroke="#20262c" stroke-width="2"/></svg></div>
+        <span class="spark spark-one" aria-hidden="true">✦</span><span class="spark spark-two" aria-hidden="true">✧</span>
+      </section>
+      <section class="copy" aria-labelledby="title">
+        <p class="eyebrow"><span></span> ONE LITTLE SIDE QUEST</p>
+        <h1 id="title">Myriam,<br>pick a scent<br><em>with me?</em></h1>
+        <p class="subtitle">You collect perfumes. I know nothing.<br>Parfumerie together? 😌</p>
+        <div class="answer-arena" id="answer-arena">
+          <button class="yes-button" id="yes-button" type="button">Let's go <span aria-hidden="true">↗</span></button>
+          <button class="no-button" id="no-button" type="button">Maybe another time</button>
+        </div>
+        <div class="bottom-row"><p id="response-message" class="status" role="status" aria-live="polite">Try catching “Maybe” 😏</p><button class="decline-button" id="decline-button" type="button">No thanks</button></div>
+        <noscript><p><a href="yes_page.html">Let's go ↗</a></p></noscript>
+      </section>
     </div>
-    <p class="response" id="response-message" role="status" aria-live="polite"></p>
-    <div class="follow-up" id="follow-up" hidden>
-      <button class="text-button" id="decline-button" type="button">I'll pass, thanks</button>
-    </div>
-    <p class="footer-note">No pressure, Myriam. We're still gym buddies either way 🤝</p>
-    <noscript><p><a href="yes_page.html">Yes, let's go perfume shopping!</a> Or just tell me at the gym.</p></noscript>
+    <footer class="page-footer"><span>LESS REPS. MORE SCENT TESTS.</span><span aria-hidden="true">✦</span><span>JUST US + A PARFUMERIE</span></footer>
   </main>
 </body>
 </html>
